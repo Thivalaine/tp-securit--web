@@ -2,9 +2,11 @@
 $client = new MongoDB\Driver\Manager('mongodb://tpuser:tppass@mongo:27017/tpsecu');
 $message = '';
 if (isset($_POST['username'], $_POST['password'])) {
+    $username = json_decode($_POST['username'], true);
+    $password = json_decode($_POST['password'], true);
     $filter = [
-        'username' => $_POST['username'],
-        'password' => $_POST['password']
+        'username' => $username !== null ? $username : $_POST['username'],
+        'password' => $password !== null ? $password : $_POST['password']
     ];
     $query = new MongoDB\Driver\Query($filter);
     $rows = $client->executeQuery('tpsecu.users', $query)->toArray();
