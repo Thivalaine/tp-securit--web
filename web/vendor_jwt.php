@@ -1,0 +1,1 @@
+<?php // Fichier factice pour la démo JWT, aucune fonction ici. 
